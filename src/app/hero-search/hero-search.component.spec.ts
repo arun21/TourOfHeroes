@@ -1,39 +1,41 @@
 import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
-import { HeroDetailComponent } from './hero-detail.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { RouterModule } from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
 
-describe('HeroDetailComponent', () => {
-  let component: HeroDetailComponent;
-  let fixture: ComponentFixture<HeroDetailComponent>;
+import { HeroSearchComponent } from './hero-search.component';
+import { RouterModule } from '@angular/router';
+import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
+
+describe('HeroSearchComponent', () => {
+  let component: HeroSearchComponent;
+  let fixture: ComponentFixture<HeroSearchComponent>;
   let httpMock: HttpTestingController;
   let injector: TestBed;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [HeroSearchComponent],
       imports: [
-        FormsModule,
-        HttpClientTestingModule,
-        RouterModule.forRoot([])
+        RouterModule,
+        HttpClientTestingModule
       ],
-      declarations: [ HeroDetailComponent ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
-
+      providers: [
+        HeroService,
+        MessageService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
     injector = getTestBed();
     httpMock = injector.get(HttpTestingController);
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeroDetailComponent);
+    fixture = TestBed.createComponent(HeroSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('it creates my component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

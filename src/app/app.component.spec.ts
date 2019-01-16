@@ -1,15 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MockAppMessagesComponent
       ],
     }).compileComponents();
   }));
@@ -23,7 +27,7 @@ describe('AppComponent', () => {
   it(`should have as title 'TourOfHeroes'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('TourOfHeroes');
+    expect(app.title).toBe('TourOfHeroes');
   });
 
   it('should render title in a h1 tag', () => {
@@ -33,3 +37,10 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to TourOfHeroes!');
   });
 });
+
+@Component({
+  selector: 'app-messages',
+  template: ''
+})
+class MockAppMessagesComponent {
+}
